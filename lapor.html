@@ -1,0 +1,27 @@
+<form id="form">
+  <input id="nama" placeholder="Nama Barang" required />
+  <input id="lokasi" placeholder="Lokasi" required />
+  <textarea id="desk" placeholder="Deskripsi"></textarea>
+  <button>Kirim</button>
+</form>
+
+<script>
+const API = "https://backend-xxxxx.vercel.app/api/items";
+
+document.getElementById("form").onsubmit = async e => {
+  e.preventDefault();
+
+  await fetch(API, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      namaBarang: nama.value,
+      lokasi: lokasi.value,
+      deskripsi: desk.value,
+      tanggal: new Date().toLocaleDateString()
+    })
+  });
+
+  alert("Barang berhasil dilaporkan!");
+};
+</script>
